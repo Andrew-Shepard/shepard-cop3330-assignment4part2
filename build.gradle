@@ -25,4 +25,4 @@ javafx {
 test {
     useJUnitPlatform()
 }
-mainClassName = 'HelloWorld'
+mainClassName = 'ucf.assignments.App'

@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+class App{
+    main()
+    start()
+}
+
+class TodoList {
+    String title
+    List<item> items
+    sortItems():void
+}
+class Item {
+    String description
+    Boolean completion_status
+    Date due_date
+    setDescription():void
+}
+class User {
+    Int active_list
+    setActiveList():void
+    getActiveList():void
+    addNewTodoList():void
+    removeExistingTodoList():void
+    setTitle(TodoList tl):void
+    addItem(String description, Boolean completion_status, Date due_date):void
+    removeItem(TodoList tl):void
+    editItemDescription(TodoList tl, Item i):void
+    editItemDueDate(TodoList tl, Item i):void
+    completeItem(TodoList tl, Item i):void
+    displayCompleteItems(TodoList tl):void
+    displayIncompleteItems(TodoList tl):void
+    displayAllItems(TodoList tl):void
+}
+
+javafx.Application <|-- App
+
+Item o-- User
+TodoList o-- User
+Item *-- TodoList
+
+@enduml
