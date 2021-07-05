@@ -11,4 +11,7 @@ public class TodoList {
     public void sortItems(){
 
     }
+    public void setTitle(String title){
+        this.title = title;
+    }
 }

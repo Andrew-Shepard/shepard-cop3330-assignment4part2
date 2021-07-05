@@ -8,39 +8,58 @@ class App{
 class TodoList {
     String title
     List<item> items
-    sortItems():void
+    +sortItems():void
 }
 class Item {
     String description
-    Boolean completion_status
-    Date due_date
-    setDescription():void
+    +int item_id
+    +Boolean completion_status
+    +Date due_date
+    +setDescription():void
 }
 class User {
-    Int active_list
-    setActiveList():void
-    getActiveList():void
-    addNewTodoList():void
-    removeExistingTodoList():void
-    setTitle(TodoList tl):void
-    addItem(String description, Boolean completion_status, Date due_date):void
-    removeItem(TodoList tl):void
-    editItemDescription(TodoList tl, Item i):void
-    editItemDueDate(TodoList tl, Item i):void
-    completeItem(TodoList tl, Item i):void
-    displayCompleteItems(TodoList tl):void
-    displayIncompleteItems(TodoList tl):void
-    displayAllItems(TodoList tl):void
+    +Int active_list
+    +setActiveList():void
+    +getActiveList():void
+    +addNewTodoList():void
+    +removeExistingTodoList():void
+    +setTitle(TodoList tl):void
+    +addItem(String description, Boolean completion_status, Date due_date):void
+    +removeItem(TodoList tl):void
+    +editItemDescription(TodoList tl, Item i):void
+    +editItemDueDate(TodoList tl, Item i):void
+    +completeItem(TodoList tl, Item i):void
+    +displayCompleteItems(TodoList tl):void
+    +displayIncompleteItems(TodoList tl):void
+    +displayAllItems(TodoList tl):void
 }
 class MainPageController{
-    +LoadButtonClicked(ActionEvent actionEvent)
-    +SaveButtonClicked(ActionEvent actionEvent)
-    +RemoveListButtonClicked(ActionEvent actionEvent)
-    +EditListButtonClicked(ActionEvent actionEvent)
-    +AddNewListButtonClicked(ActionEvent actionEvent)
+    +LoadButtonClicked(ActionEvent actionEvent):void
+    +SaveButtonClicked(ActionEvent actionEvent):void
+    +RemoveListButtonClicked(ActionEvent actionEvent):void
+    +EditListButtonClicked(ActionEvent actionEvent):void
+    +AddNewListButtonClicked(ActionEvent actionEvent):void
+}
+class EditItemPageController{
+    +SaveItem(ActionEvent actionEvent):void
+    +ReturnToMainPage(ActionEvent actionEvent):void
+}
+class EditTodoListPageController{
+    +EditTodolistItem(ActionEvent actionEvent):void
+    +DeleteTodolistItem(ActionEvent actionEvent):void
+    +AddTodolistItem(ActionEvent actionEvent):void
+    +ReturnToMainPage(ActionEvent actionEvent):void
+    +displayAllItems(ActionEvent actionEvent):void
+    +displayCompleteItems(ActionEvent actionEvent):void
+    +displayIncompleteItems(ActionEvent actionEvent):void
 }
 javafx.Application <|-- App
-
+javafx.Application <|-- MainPageController
+javafx.Application <|-- EditItemPageController
+javafx.Application <|-- EditTodoListPageController
+MainPageController o-- User
+EditItemPageController o-- User
+EditTodoListPageController o-- User
 Item o-- User
 TodoList o-- User
 Item *-- TodoList
