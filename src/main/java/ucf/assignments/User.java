@@ -1,7 +1,10 @@
 package ucf.assignments;
 import java.util.Date;
 import java.util.List;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 4 Solution
+ *  Copyright 2021 Andrew Shepard
+ */
 public class User {
     List<TodoList> lists;
     public void loadTodoLists(){

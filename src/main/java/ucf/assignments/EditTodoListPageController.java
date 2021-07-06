@@ -8,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 4 Solution
+ *  Copyright 2021 Andrew Shepard
+ */
 public class EditTodoListPageController {
     public void EditTodolistItem(ActionEvent actionEvent) throws IOException {
         Parent listView = FXMLLoader.load(getClass().getResource("EditItemPage.fxml"));

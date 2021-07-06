@@ -8,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 4 Solution
+ *  Copyright 2021 Andrew Shepard
+ */
 public class EditItemPageController {
     public void SaveItem(ActionEvent actionEvent) {
         //take the information from the 3 fields on this button press
