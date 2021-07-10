@@ -1,8 +1,13 @@
 package ucf.assignments;
 
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,24 +20,28 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /*
  *  UCF COP3330 Summer 2021 Assignment 4 Solution
  *  Copyright 2021 Andrew Shepard
  */
-public class MainPageController {
+public class MainPageController implements Initializable {
     @FXML private TableView<Item> tableView;
-    @FXML private TableColumn<Item, String> dueDateColumn;
-    @FXML private TableColumn<Item, String> completionStatusColumn;
-    @FXML private TableColumn<Item, LocalDate> descriptionColumn;
+    @FXML private TableColumn<Item, SimpleStringProperty> dueDateColumn;
+    @FXML private TableColumn<Item, Boolean> completionStatusColumn;
+    @FXML private TableColumn<Item, SimpleStringProperty> descriptionColumn;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb){
-        dueDateColumn.setCellValueFactory(new PropertyValueFactory<Item,String>("dueDate"));
-        completionStatusColumn.setCellValueFactory(new PropertyValueFactory<Item,String>("completionStatus"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<Item,LocalDate>("description"));
 
+    public ObservableList<Item> getItems(){
+        ObservableList<Item> observable_list_items = FXCollections.observableArrayList();
+        User u = new User("resources/Example.json");
+        List<Item> list_items = u.loadItems();
+        for(Item item : list_items){
+            observable_list_items.add(item);
+        }
+        return observable_list_items;
     }
     public void EditTodolistItem(ActionEvent actionEvent) throws IOException {
         Parent listView = FXMLLoader.load(getClass().getResource("EditItemPage.fxml"));
@@ -80,5 +89,16 @@ public class MainPageController {
     public void displayIncompleteItems(ActionEvent actionEvent) {
         //get the new list of items using the user.displayincompleteitems
         //populate the relevant textboxes
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+        //sets up columns
+        System.out.println(getItems());
+        dueDateColumn.setCellValueFactory(new PropertyValueFactory<Item,SimpleStringProperty>("due_date"));
+        completionStatusColumn.setCellValueFactory(new PropertyValueFactory<Item,Boolean>("completion_status"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<Item,SimpleStringProperty>("description"));
+        //load data
+        tableView.setItems(getItems());
+
     }
 }

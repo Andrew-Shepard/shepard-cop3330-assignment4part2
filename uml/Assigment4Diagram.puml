@@ -4,12 +4,6 @@ class App{
     +main()
     +start()
 }
-
-class TodoList {
-    String title
-    List<item> items
-    +sortItems():void
-}
 class Item {
     String description
     +int item_id
@@ -23,15 +17,15 @@ class User {
     +getActiveList():void
     +addNewTodoList():void
     +removeExistingTodoList():void
-    +setTitle(TodoList tl):void
+    +setTitle():void
     +addItem(String description, Boolean completion_status, Date due_date):void
-    +removeItem(TodoList tl):void
-    +editItemDescription(TodoList tl, Item i):void
-    +editItemDueDate(TodoList tl, Item i):void
-    +completeItem(TodoList tl, Item i):void
-    +displayCompleteItems(TodoList tl):void
-    +displayIncompleteItems(TodoList tl):void
-    +displayAllItems(TodoList tl):void
+    +removeItem():void
+    +editItemDescription(Item i, String description):void
+    +editItemDueDate(Item i, String due_date):void
+    +editItemCompletionStatus(Item i, Boolean completion_status):void
+    +displayCompleteItems():void
+    +displayIncompleteItems():void
+    +displayAllItems():void
 }
 class MainPageController{
     +LoadButtonClicked(ActionEvent actionEvent):void

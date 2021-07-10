@@ -63,11 +63,11 @@
       </Label>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <content>
-            <TableView prefHeight="250.0" prefWidth="498.0">
+            <TableView fx:id="tableView" prefHeight="250.0" prefWidth="498.0">
                <columns>
-                  <TableColumn id="dueDateColumn" prefWidth="103.20001065731049" text="Due Date" />
-                  <TableColumn id="completionStatusColumn" prefWidth="72.80005645751953" text="Completion" />
-                  <TableColumn id="descriptionColumn" prefWidth="320.00006103515625" text="Description" />
+                  <TableColumn fx:id="dueDateColumn" prefWidth="103.20001065731049" text="Due Date" />
+                  <TableColumn fx:id="completionStatusColumn" prefWidth="72.80005645751953" text="Completion" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="320.00006103515625" text="Description" />
                </columns>
             </TableView>
          </content>

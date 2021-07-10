@@ -27,7 +27,7 @@ public class User {
             File input = new File(filePath);
             JsonElement fileElement = JsonParser.parseReader(new FileReader(input));
             JsonObject fileObject = fileElement.getAsJsonObject();
-            JsonArray jsonArrayofItems = fileObject.get("items").getAsJsonArray();
+            JsonArray jsonArrayofItems = fileObject.get("Todolist").getAsJsonArray();
             List<Item> items = new ArrayList<>();
             //for each item in the json
             for(JsonElement itemElement : jsonArrayofItems){
@@ -54,10 +54,8 @@ public class User {
         //for each item in tl
         Gson gson = new Gson();
         try {
-            for(Item item : todolist){
-                //add the items to the json
-                gson.toJson(item, new FileWriter(filePath));
-            }
+            //add the items to the json
+            gson.toJson(todolist, new FileWriter(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
