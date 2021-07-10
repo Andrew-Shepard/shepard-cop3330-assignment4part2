@@ -6,12 +6,13 @@ import java.util.Date;
  *  Copyright 2021 Andrew Shepard
  */
 public class Item {
+
     int item_id;
     String description;
     Boolean completion_status = false;
-    Date due_date;
+    String due_date;
 
-    public Item (String description, Date due_date){
+    public Item (String description, Boolean completion_status, String due_date){
         this.description = description;
         this.due_date = due_date;
     }
@@ -19,7 +20,7 @@ public class Item {
     public void setDescription(String description){
         this.description = description;
     }
-    public void setDue_date(Date due_date){this.due_date = due_date;}
+    public void setDue_date(String due_date){this.due_date = due_date;}
     public void setCompletion_status(Boolean completion_status) { this.completion_status = completion_status; }
 
 }

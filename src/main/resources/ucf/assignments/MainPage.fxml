@@ -2,63 +2,75 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="ucf.assignments.MainPageController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.MainPageController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="128.59998168945313" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="297.6000244140625" minHeight="10.0" prefHeight="230.40001220703124" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="122.19998779296878" minHeight="10.0" prefHeight="118.19998779296878" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Select List:" GridPane.rowIndex="1">
+      <Label text="Select Item:">
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin>
       </Label>
-      <Button mnemonicParsing="false" onAction="#SaveTodoLists" text="Save">
+      <Button mnemonicParsing="false" onAction="#EditTodolistItem" text="[*] Edit" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="20.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#LoadTodoLists" text="Load" GridPane.halignment="LEFT">
+      <Button mnemonicParsing="false" onAction="#DeleteTodolistItem" text="[-] Delete" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="80.0" />
          </GridPane.margin>
       </Button>
-      <Label text="Lists" GridPane.columnIndex="1">
+      <Button mnemonicParsing="false" onAction="#AddTodolistItem" text="[+] Add" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets left="40.0" />
-         </GridPane.margin>
-      </Label>
-      <Label text="[]" GridPane.columnIndex="1">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin>
-      </Label>
-      <ComboBox onAction="#SelectTodoList" prefWidth="150.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets right="20.0" />
-         </GridPane.margin>
-      </ComboBox>
-      <Button mnemonicParsing="false" onAction="#DeleteTodoList" text="[-] Delete List" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets left="20.0" />
+            <Insets left="155.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#AddTodoList" text="[+] Add List" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+      <Button mnemonicParsing="false" onAction="#ReturnToMainPage" text="Return" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets right="20.0" />
+            <Insets right="50.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#LaunchListView" text="[*] Launch List View (Edit Selected List)" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" onAction="#displayCompleteItems" text="Completed" GridPane.halignment="RIGHT" />
+      <Button mnemonicParsing="false" onAction="#displayIncompleteItems" text="Incomplete" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="80.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#displayAllItems" text="All" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="160.0" />
+         </GridPane.margin>
+      </Button>
+      <Label text="Show Entries:" GridPane.halignment="RIGHT">
+         <GridPane.margin>
+            <Insets right="200.0" />
+         </GridPane.margin>
+      </Label>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <content>
+            <TableView prefHeight="250.0" prefWidth="498.0">
+               <columns>
+                  <TableColumn id="dueDateColumn" prefWidth="103.20001065731049" text="Due Date" />
+                  <TableColumn id="completionStatusColumn" prefWidth="72.80005645751953" text="Completion" />
+                  <TableColumn id="descriptionColumn" prefWidth="320.00006103515625" text="Description" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
    </children>
 </GridPane>
