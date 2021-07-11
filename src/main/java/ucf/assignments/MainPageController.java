@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -29,14 +30,15 @@ import java.util.ResourceBundle;
  */
 public class MainPageController implements Initializable {
     @FXML private TableView<Item> tableView;
-    @FXML private TableColumn<Item, SimpleStringProperty> dueDateColumn;
+    @FXML private TableColumn<Item, LocalDate> dueDateColumn;
     @FXML private TableColumn<Item, Boolean> completionStatusColumn;
     @FXML private TableColumn<Item, SimpleStringProperty> descriptionColumn;
+    @FXML private TextField filenameTextbox;
 
+    private User u = new User();
 
     public ObservableList<Item> getItems(){
         ObservableList<Item> observable_list_items = FXCollections.observableArrayList();
-        User u = new User("resources/Example.json");
         List<Item> list_items = u.loadItems();
         for(Item item : list_items){
             observable_list_items.add(item);
@@ -51,19 +53,29 @@ public class MainPageController implements Initializable {
         window.setScene(listViewScene);
         window.show();
         //pass the current list of todolists to the edit item page's textboxs
-        //using user.displayitems access each item in the todolist
-        //put each part of the item into it's respective textbox
-        //pass the index of this item to the next scene
+        ObservableList<Item> item;
+        item = tableView.getSelectionModel().getSelectedItems();
+        //Set the active item to be accessed in the next scene
+        u.setActive_item_index(u.findItem_index(item.get(0)));
+        window.setUserData(u);
+
+
     }
 
     public void DeleteTodolistItem(ActionEvent actionEvent) {
         //remove an item from a todolist arraylist using user.removeitem
+        ObservableList<Item> item;
+        item = tableView.getSelectionModel().getSelectedItems();
+        u.removeItem(item.get(0));
         //update the list of todolists to not have that item within the todolist
+        tableView.setItems(u.getAllItems());
     }
 
     public void AddTodolistItem(ActionEvent actionEvent) {
         //add an item to the todolist arraylist user.additem
+        u.addItem("New Item Description",false,LocalDate.now());
         //update the list of todolists to include that new item
+        tableView.setItems(u.getAllItems());
     }
 
     public void ReturnToMainPage(ActionEvent actionEvent) throws IOException {
@@ -74,31 +86,42 @@ public class MainPageController implements Initializable {
         window.setScene(listViewScene);
         window.show();
         //pass the list of todolists to the main page
+
     }
 
     public void displayAllItems(ActionEvent actionEvent) {
         //get the new list of items using user.displayall
+        tableView.setItems(u.getAllItems());
         //populate the relevant textboxes
     }
 
     public void displayCompleteItems(ActionEvent actionEvent) {
         //get the new list of items using user.displaycompleteitems
+        tableView.setItems(u.getCompleteItems());
         //populate the relevant textboxes
     }
 
     public void displayIncompleteItems(ActionEvent actionEvent) {
         //get the new list of items using the user.displayincompleteitems
+        tableView.setItems(u.getIncompleteItems());
         //populate the relevant textboxes
+    }
+    public void loadTodolist(ActionEvent actionEvent) {
+        //load new json
+        //set user's list to the list the data in that json
+        u.setFilePath(filenameTextbox.getText());
+        u.setTodolist(getItems());
+        //update display
     }
     @Override
     public void initialize(URL url, ResourceBundle rb){
         //sets up columns
-        System.out.println(getItems());
-        dueDateColumn.setCellValueFactory(new PropertyValueFactory<Item,SimpleStringProperty>("due_date"));
+        dueDateColumn.setCellValueFactory(new PropertyValueFactory<Item,LocalDate>("due_date"));
         completionStatusColumn.setCellValueFactory(new PropertyValueFactory<Item,Boolean>("completion_status"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Item,SimpleStringProperty>("description"));
         //load data
-        tableView.setItems(getItems());
+        u.setTodolist(getItems());
+        tableView.setItems(u.getAllItems());
 
     }
 }
