@@ -1,122 +1,92 @@
 package ucf.assignments;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
     @Test
-    void loadTodoLists_creates_a_list() {
+    void findItem_index_locates_an_item() {
         //create user object
-        //run the function
-        //if user's lists has an index greater than 0 then it has created a list
-    }
-    @Test
-    void loadTodoLists_counts_the_json_correctly() {
-        //create user object
-        //create a json with a predetermined amount of todolists
-        //run the function
-        //assert if user's lists has the expected size
+        User u = new User();
+
+        //use the function
+        Item expected = new Item("ABC",Boolean.FALSE, LocalDate.now());
+        //load sample data (Default is Example.json)
+        ObservableList<Item> loaded_list = FXCollections.observableArrayList();
+        for(Item item : u.loadItems()){
+            loaded_list.add(item);
+        }
+        u.setTodolist(loaded_list);
+        //add expected object at the end of the list
+        u.getTodolist().add(expected);
+        //see if it finds this item at the last index on the list
+        assertEquals(u.getTodolist().size()-1, u.findItem_index(expected));
+
     }
 
     @Test
-    void getActiveList() {
-        //not used in current implementation
+    void loadItems_Creates_a_list() {
         //create user object
-        //assert if the found todolist equals the actual todolist in that index
+        User u = new User();
+        u.setFilePath("resources/Example.json");
+        //run the function
+        //if user's lists has an index greater than 0 then it has created a list
+        assertTrue(u.loadItems().size() > 0);
     }
 
     @Test
     void saveTodoLists() {
         //create user object
-        //add a todolist to the main lists
+        User u = new User();
+        u.setFilePath("resources/saveTodoListsTest.json");
+        //add an item to the list
+        u.addItem("A",Boolean.FALSE,LocalDate.now());
         //run the save function
+        u.saveTodoLists();
         //run the load function on the saved file
+        ObservableList<Item> loaded_list = FXCollections.observableArrayList();
+        for(Item item : u.loadItems()){
+            loaded_list.add(item);
+        }
+        u.setTodolist(loaded_list);
         //assert if the loaded list has a size
-    }
-
-    @Test
-    void addNewTodoList() {
-        //create user object
-        //create a variable with the original length of lists
-        //run the function
-        //see if it added one to lists length
-    }
-
-    @Test
-    void removeExistingTodoList() {
-        //create user object
-        //create a variable with the original length of lists
-        //run the function
-        //see if it removed one to lists length
-    }
-
-    @Test
-    void setTitle() {
-        //create user object
-        //use the function
-        //assert if the title property of a function equals to what it was set to
+        assertTrue(u.getTodolist().size() > 0);
     }
 
     @Test
     void addItem() {
-        //create user object
-        //record the length of the todolist
-        //use the function
-        //assert if the length equals to what was recorded previously plus one
     }
 
     @Test
     void removeItem() {
-        //create user object
-        //record the length of the todolist
-        //use the function
-        //assert if the length equals to what was recorded previously minus one
     }
 
     @Test
     void editItemDescription() {
-        //create user object
-        //use the function
-        //assert if the description property of a function equals to what it was set to
     }
 
     @Test
     void editItemDueDate() {
-        //create user object
-        //use the function
-        //assert if the due date property of a function equals to what it was set to
     }
 
     @Test
-    void completeItem() {
-        //create user object
-        //use the function
-        //assert if the completion status property of a function equals to what it was set to
+    void editItemCompetionStatus() {
     }
 
     @Test
-    void displayCompleteItems() {
-        //create user object
-        //create a list with a counted number of complete items and incomplete items
-        //use the function
-        //assert if the function result's length equals the expected number of complete items
+    void getCompleteItems() {
     }
 
     @Test
-    void displayIncompleteItems() {
-        //create user object
-        //create a list with a counted number of complete items and incomplete items
-        //use the function
-        //assert if the function result's length equals the expected number of incomplete items
+    void getIncompleteItems() {
     }
 
-    @Test
-    void displayAllItems() {
-        //create user object
-        //create a list with a counted number of complete items and incomplete items
-        //use the function
-        //assert if the length is expected
-    }
+
 }

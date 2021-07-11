@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
  *  Copyright 2021 Andrew Shepard
  */
 public class User {
-    ObservableList<Item> todolist;
+    ObservableList<Item> todolist = FXCollections.observableArrayList();
     private String filePath = "resources/Example.json";
     int active_item_index = 0;
     // *** Constructor ***
