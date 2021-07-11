@@ -36,7 +36,10 @@ public class MainPageController implements Initializable {
     @FXML private TextField filenameTextbox;
 
     private User u = new User();
-
+    void initData(User u){
+        this.u = u;
+        tableView.setItems(u.getAllItems());
+    }
     public ObservableList<Item> getItems(){
         ObservableList<Item> observable_list_items = FXCollections.observableArrayList();
         List<Item> list_items = u.loadItems();
@@ -46,18 +49,19 @@ public class MainPageController implements Initializable {
         return observable_list_items;
     }
     public void EditTodolistItem(ActionEvent actionEvent) throws IOException {
-        Parent listView = FXMLLoader.load(getClass().getResource("EditItemPage.fxml"));
-        Scene listViewScene = new Scene(listView);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EditItemPage.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(loader.load()));
 
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        window.setScene(listViewScene);
-        window.show();
-        //pass the current list of todolists to the edit item page's textboxs
+        EditItemPageController controller = loader.getController();
         ObservableList<Item> item;
         item = tableView.getSelectionModel().getSelectedItems();
         //Set the active item to be accessed in the next scene
         u.setActive_item_index(u.findItem_index(item.get(0)));
-        window.setUserData(u);
+        controller.initData(u);
+
+        stage.show();
+
 
 
     }
@@ -112,6 +116,7 @@ public class MainPageController implements Initializable {
         u.setFilePath(filenameTextbox.getText());
         u.setTodolist(getItems());
         //update display
+        tableView.setItems(u.getAllItems());
     }
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -120,8 +125,5 @@ public class MainPageController implements Initializable {
         completionStatusColumn.setCellValueFactory(new PropertyValueFactory<Item,Boolean>("completion_status"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Item,SimpleStringProperty>("description"));
         //load data
-        u.setTodolist(getItems());
-        tableView.setItems(u.getAllItems());
-
     }
 }

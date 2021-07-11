@@ -18,7 +18,7 @@ public class User {
     int active_item_index = 0;
     // *** Constructor ***
 
-    public List<Item> getTodolist() { return todolist; }
+    public ObservableList<Item> getTodolist() { return todolist; }
 
     public int findItem_index(Item item) {
         int item_index = todolist.indexOf(item);
