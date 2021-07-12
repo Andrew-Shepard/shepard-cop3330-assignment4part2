@@ -173,6 +173,19 @@ class UserTest {
         //check that the length of the return list matches the expected amount of False items
         assertEquals(2,u.getIncompleteItems().size());
     }
+    @Test
+    void getAllItems_returns_the_entire_list(){
+        //create user object
+        User u = new User();
+        //create a sample list for user
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        //check that the length of the return list matches the expected amount of False items
+        assertEquals(5,u.getAllItems().size());
+    }
 
 
 }
