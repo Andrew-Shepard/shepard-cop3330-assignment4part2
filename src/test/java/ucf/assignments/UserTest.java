@@ -8,8 +8,32 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 4 Solution
+ *  Copyright 2021 Andrew Shepard
+ */
 class UserTest {
+    @Test
+    void user_can_store_1000_items() {
+        //create a new user object
+        User u = new User();
+        //add over a thousand items
+        for (int i = 0; i < 1001; i++) {
+            u.addItem("test", Boolean.FALSE, LocalDate.now());
+        }
+        //see if it is holding over a thousand items
+        assertTrue(u.getTodolist().size() > 1000);
+    }
+
+    @Test
+    void an_item_cannot_have_over_256_characters() {
+        //Create a new item with a string of 256+ characters
+        Item i = new Item("You will submit a link to your GitHub page. Please ensure that your repository is private until 12 hours after the due date, at which point you may make it public. If you need myself or a TA to look at your code, you may share your repository with us - just ask us for our GitHub user names.It should go without saying that if we suspect you have copied code from another student, you will be referred to the office of student conduct and receive a Z grade for the course.If we cannot access your repository, or if you provide an invalid link, you will receive a 0 - please double check your submission once it has been made.Late submissions will receive a 0 as per the syllabus.Note: All of your design artifacts from [Part 1] should be part of [Part 2], except where they have been updated to reflect changes in your design.",
+                Boolean.FALSE,
+                LocalDate.now());
+        //check the length of the description for 256
+        assertEquals(256, i.getDescription().length());
+    }
 
     @Test
     void findItem_index_locates_an_item() {
@@ -17,17 +41,17 @@ class UserTest {
         User u = new User();
 
         //use the function
-        Item expected = new Item("ABC",Boolean.FALSE, LocalDate.now());
+        Item expected = new Item("ABC", Boolean.FALSE, LocalDate.now());
         //load sample data (Default is Example.json)
         ObservableList<Item> loaded_list = FXCollections.observableArrayList();
-        for(Item item : u.loadItems()){
+        for (Item item : u.loadItems()) {
             loaded_list.add(item);
         }
         u.setTodolist(loaded_list);
         //add expected object at the end of the list
         u.getTodolist().add(expected);
         //see if it finds this item at the last index on the list
-        assertEquals(u.getTodolist().size()-1, u.findItem_index(expected));
+        assertEquals(u.getTodolist().size() - 1, u.findItem_index(expected));
 
     }
 
@@ -47,12 +71,12 @@ class UserTest {
         User u = new User();
         u.setFilePath("resources/saveTodoListsTest.json");
         //add an item to the list
-        u.addItem("A",Boolean.FALSE,LocalDate.now());
+        u.addItem("A", Boolean.FALSE, LocalDate.now());
         //run the save function
         u.saveTodoLists();
         //run the load function on the saved file
         ObservableList<Item> loaded_list = FXCollections.observableArrayList();
-        for(Item item : u.loadItems()){
+        for (Item item : u.loadItems()) {
             loaded_list.add(item);
         }
         u.setTodolist(loaded_list);
@@ -62,15 +86,34 @@ class UserTest {
 
     @Test
     void addItem_shows_increased_index() {
-
+        //create user object
+        User u = new User();
+        int expected = u.getTodolist().size() + 1;
+        //add an item to the list
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        assertEquals(expected, u.getTodolist().size());
     }
 
     @Test
-    void removeItem() {
+    void removeItem_shows_decreased_index() {
+        //create user object
+        User u = new User();
+        int expected = 2;
+        //add 3 items to the list
+        Item i = new Item("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.removeItem(u.getTodolist().get(0));
+        assertEquals(expected, u.getTodolist().size());
     }
 
     @Test
     void editItemDescription() {
+        //create user object
+        //create item object
+
+        //assert if the changed string equals what it was changed to
     }
 
     @Test
