@@ -109,11 +109,16 @@ class UserTest {
     }
 
     @Test
-    void editItemDescription() {
+    void editItemDescription_shows_changed_description() {
         //create user object
+        User u = new User();
+        String expected = "expected";
         //create item object
-
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        //run edititemdescription
+        u.editItemDescription(u.getTodolist().get(0),expected);
         //assert if the changed string equals what it was changed to
+        assertEquals(expected,u.getTodolist().get(0).getDescription());
     }
 
     @Test
