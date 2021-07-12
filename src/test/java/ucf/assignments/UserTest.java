@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -185,6 +186,24 @@ class UserTest {
         u.addItem("", Boolean.TRUE, LocalDate.now());
         //check that the length of the return list matches the expected amount of False items
         assertEquals(5,u.getAllItems().size());
+    }
+    @Test
+    void saveTodoLists_creates_a_JSON_file(){
+        //create user object
+        User u = new User();
+        //create a sample list for user
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        //set filepath to some testing location
+        String TEST_PATH = "resources/UserTest.json";
+        u.setFilePath(TEST_PATH);
+        u.saveTodoLists();
+        //check if the file exists
+        File f = new File(TEST_PATH);
+        assertTrue(f.exists());
     }
 
 
