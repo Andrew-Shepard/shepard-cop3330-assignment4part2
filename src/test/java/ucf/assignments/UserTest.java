@@ -122,7 +122,7 @@ class UserTest {
     }
 
     @Test
-    void editItemDueDate() {
+    void editItemDueDate_shows_changed_value() {
         //create user object
         User u = new User();
         LocalDate expected = LocalDate.now();
@@ -135,7 +135,16 @@ class UserTest {
     }
 
     @Test
-    void editItemCompetionStatus() {
+    void editItemCompetionStatus_shows_changed_value() {
+        //create user object
+        User u = new User();
+        Boolean expected = Boolean.TRUE;
+        //create item object
+        u.addItem("", Boolean.FALSE, LocalDate.MAX);
+        //run edititemduedate
+        u.editItemCompetionStatus(u.getTodolist().get(0),expected);
+        //assert if the changed string equals what it was changed to
+        assertEquals(expected,u.getTodolist().get(0).getCompletion_status());
     }
 
     @Test
