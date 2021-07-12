@@ -162,6 +162,16 @@ class UserTest {
 
     @Test
     void getIncompleteItems_returns_only_incomplete_items() {
+        //create user object
+        User u = new User();
+        //create a sample list for user
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        //check that the length of the return list matches the expected amount of False items
+        assertEquals(2,u.getIncompleteItems().size());
     }
 
 
