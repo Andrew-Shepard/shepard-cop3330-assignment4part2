@@ -123,6 +123,11 @@ public class MainPageController implements Initializable {
         System.out.println(filenameTextbox.getText());
         u.saveTodoLists();
     }
+    public void clearTodoList(ActionEvent actionEvent) {
+        u.clearTodoList();
+        //update display
+        tableView.setItems(u.getAllItems());
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb){
         //sets up columns
@@ -131,6 +136,4 @@ public class MainPageController implements Initializable {
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<Item,SimpleStringProperty>("description"));
         //load data
     }
-
-
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 /*
@@ -204,6 +205,25 @@ class UserTest {
         //check if the file exists
         File f = new File(TEST_PATH);
         assertTrue(f.exists());
+    }
+    @Test
+    void loadTodoLists_loads_a_saved_JSON_file(){
+        //create user object
+        User u = new User();
+        //create a sample list for user
+        u.addItem("a", Boolean.FALSE, LocalDate.now());
+        u.addItem("a", Boolean.FALSE, LocalDate.now());
+        u.addItem("a", Boolean.TRUE, LocalDate.now());
+        u.addItem("a", Boolean.TRUE, LocalDate.now());
+        u.addItem("a", Boolean.TRUE, LocalDate.now());
+        //set filepath to some testing location
+        String TEST_PATH = "resources/UserTest.json";
+        u.setFilePath(TEST_PATH);
+        u.saveTodoLists();
+        //load the file from the testing location
+        List<Item> test = u.loadItems();
+        //check if it loaded the expected amount of items
+        assertEquals(5,test.size());
     }
 
 

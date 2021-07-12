@@ -83,5 +83,10 @@
             <Insets bottom="30.0" right="20.0" />
          </GridPane.margin>
       </Button>
+      <Button fx:id="clearAllButton" mnemonicParsing="false" onAction="#clearTodoList" text="Clear all">
+         <GridPane.margin>
+            <Insets left="100.0" />
+         </GridPane.margin>
+      </Button>
    </children>
 </GridPane>

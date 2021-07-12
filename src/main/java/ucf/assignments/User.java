@@ -70,6 +70,9 @@ public class User {
         return todolist.get(index);
 
     }
+    public void clearTodoList(){
+        todolist.clear();
+    }
     public void saveTodoLists(){
         //for each item in tl
         Gson gson = new Gson();
