@@ -123,6 +123,15 @@ class UserTest {
 
     @Test
     void editItemDueDate() {
+        //create user object
+        User u = new User();
+        LocalDate expected = LocalDate.now();
+        //create item object
+        u.addItem("", Boolean.FALSE, LocalDate.MAX);
+        //run edititemduedate
+        u.editItemDueDate(u.getTodolist().get(0),expected);
+        //assert if the changed string equals what it was changed to
+        assertEquals(expected,u.getTodolist().get(0).getDue_date());
     }
 
     @Test
