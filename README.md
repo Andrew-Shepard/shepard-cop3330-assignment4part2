@@ -24,4 +24,7 @@
 ### A user shall be able to save and load the list (and all of its items) to external storage
 ![](https://i.imgur.com/BNnktMl.gif)
 
+### The ability to sort
+![](https://i.imgur.com/ZSio70P.gif)
+
 Thanks rey.
