@@ -1,9 +1,8 @@
 package ucf.assignments;
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 import com.google.gson.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -144,6 +143,16 @@ public class User {
         }
         return complete_items;
 
+    }
+    public static Comparator<Item> dateComparator = new Comparator<Item>() {
+        public int compare(Item item_1, Item item_2) {
+            LocalDate  item_1Date = item_1.getDue_date();
+            LocalDate item_2Date = item_2.getDue_date();
+            //ascending order
+            return item_1Date.compareTo(item_2Date);
+        }};
+    public void sortItemByDate(){
+        Collections.sort(todolist,dateComparator);
     }
     public ObservableList<Item> getAllItems(){
         return todolist;

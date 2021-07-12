@@ -28,6 +28,7 @@ class User {
     +displayCompleteItems():void
     +displayIncompleteItems():void
     +displayAllItems():void
+    +sortItemByDate():void
 }
 class MainPageController{
     +LoadButtonClicked(ActionEvent actionEvent):void
@@ -39,6 +40,7 @@ class MainPageController{
     +clearAllItems(ActionEvent actionEvent):void
     +displayCompleteItems(ActionEvent actionEvent):void
     +displayIncompleteItems(ActionEvent actionEvent):void
+    +sortByDate(ActionEvent actionEvent):void
 }
 class EditItemPageController{
     +SaveItem(ActionEvent actionEvent):void

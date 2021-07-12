@@ -128,6 +128,9 @@ public class MainPageController implements Initializable {
         //update display
         tableView.setItems(u.getAllItems());
     }
+    public void sortByDate(ActionEvent actionEvent) {
+        u.sortItemByDate();
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb){
         //sets up columns

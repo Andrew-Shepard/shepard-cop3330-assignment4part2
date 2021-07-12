@@ -85,7 +85,12 @@
       </Button>
       <Button fx:id="clearAllButton" mnemonicParsing="false" onAction="#clearTodoList" text="Clear all">
          <GridPane.margin>
-            <Insets left="100.0" />
+            <Insets left="90.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="sortButton" mnemonicParsing="false" onAction="#sortByDate" text="Sort">
+         <GridPane.margin>
+            <Insets left="160.0" />
          </GridPane.margin>
       </Button>
    </children>

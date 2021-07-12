@@ -240,6 +240,18 @@ class UserTest {
         //assert that the lists length is 0
         assertEquals(0,u.getTodolist().size());
     }
+    @Test
+    void sorttodolist_reorders_elements_decending() {
+        //create user object
+        User u = new User();
+        //create a sample list for user
+        u.addItem("a", Boolean.FALSE, LocalDate.MIN);
+        u.addItem("b", Boolean.FALSE, LocalDate.MAX);
+        u.addItem("a", Boolean.TRUE, LocalDate.now());
+        //show the last item in the list matches description b and date max
+        u.sortItemByDate();
+        assertEquals(u.getTodolist().get(2).getDescription(),"b");
+    }
 
 
 }
