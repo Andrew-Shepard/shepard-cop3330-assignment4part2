@@ -5,11 +5,13 @@ class App{
     +start()
 }
 class Item {
-    String description
+    SimpleStringProperty description
     +int item_id
     +Boolean completion_status
-    +Date due_date
+    +LocalDate due_date
     +setDescription():void
+    +setDue_date():void
+    +setCompletion_status():void
 }
 class User {
     +Int active_list
@@ -30,23 +32,29 @@ class User {
 class MainPageController{
     +LoadButtonClicked(ActionEvent actionEvent):void
     +SaveButtonClicked(ActionEvent actionEvent):void
-    +RemoveListButtonClicked(ActionEvent actionEvent):void
-    +EditListButtonClicked(ActionEvent actionEvent):void
-    +AddNewListButtonClicked(ActionEvent actionEvent):void
+    +RemoveItemButtonClicked(ActionEvent actionEvent):void
+    +EditItemButtonClicked(ActionEvent actionEvent):void
+    +AddNewItemButtonClicked(ActionEvent actionEvent):void
+    +displayAllItems(ActionEvent actionEvent):void
+    +clearAllItems(ActionEvent actionEvent):void
+    +displayCompleteItems(ActionEvent actionEvent):void
+    +displayIncompleteItems(ActionEvent actionEvent):void
 }
 class EditItemPageController{
     +SaveItem(ActionEvent actionEvent):void
     +ReturnToMainPage(ActionEvent actionEvent):void
 }
-class EditTodoListPageController{
-    +EditTodolistItem(ActionEvent actionEvent):void
-    +DeleteTodolistItem(ActionEvent actionEvent):void
-    +AddTodolistItem(ActionEvent actionEvent):void
-    +ReturnToMainPage(ActionEvent actionEvent):void
-    +displayAllItems(ActionEvent actionEvent):void
-    +displayCompleteItems(ActionEvent actionEvent):void
-    +displayIncompleteItems(ActionEvent actionEvent):void
+
+class ItemSaveIsScuffed{
+    +int id
+    +String description
+    +Boolean completion_status = false
+    +String due_date
+    +setDescription():void
+    +setDue_date():void
+    +setCompletion_status():void
 }
+note left: gson does NOT like\nSimpleStringProperty.\nthis class only exists to\nget past that limitation.
 javafx.Application <|-- App
 javafx.Application <|-- MainPageController
 javafx.Application <|-- EditItemPageController
@@ -54,6 +62,7 @@ javafx.Application <|-- EditTodoListPageController
 MainPageController o-- User
 EditItemPageController o-- User
 EditTodoListPageController o-- User
+ItemSaveIsScuffed o-- User
 Item o-- User
 TodoList o-- User
 Item *-- TodoList

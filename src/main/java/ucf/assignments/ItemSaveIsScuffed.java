@@ -3,7 +3,10 @@ package ucf.assignments;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
-
+/*
+ *  UCF COP3330 Summer 2021 Assignment 4 Solution
+ *  Copyright 2021 Andrew Shepard
+ */
 public class ItemSaveIsScuffed {
     int id;
     String description;
