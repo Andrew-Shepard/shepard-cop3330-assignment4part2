@@ -61,7 +61,8 @@ class UserTest {
     }
 
     @Test
-    void addItem() {
+    void addItem_shows_increased_index() {
+
     }
 
     @Test

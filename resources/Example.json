@@ -15,11 +15,11 @@
     "due_date": "2021-07-09",
     "completion_status": false
   },{
-  "id": 3,
-  "description": "4",
-  "due_date": "2021-07-09",
-  "completion_status": false
-},
+    "id": 3,
+    "description": "4",
+    "due_date": "2021-07-09",
+    "completion_status": false
+  },
   {
     "id": 4,
     "description": "5",

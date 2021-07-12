@@ -73,9 +73,20 @@ public class User {
     public void saveTodoLists(){
         //for each item in tl
         Gson gson = new Gson();
+        List<ItemSaveIsScuffed> isisList = new ArrayList<>();
+        for (Item item : todolist){
+            ItemSaveIsScuffed isis_item =  new ItemSaveIsScuffed(
+                    (String) item.getDescription(),
+                    item.getCompletion_status(),
+                    item.getDue_date().toString()
+            );
+            isisList.add(isis_item);
+        }
         try {
             //add the items to the json
-            gson.toJson(todolist, new FileWriter(filePath));
+            FileWriter fw = new FileWriter(filePath);
+            fw.write("{\"Todolist\":"+gson.toJson(isisList)+"}");
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

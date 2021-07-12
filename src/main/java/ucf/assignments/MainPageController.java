@@ -120,6 +120,7 @@ public class MainPageController implements Initializable {
     }
     public void saveTodolist(ActionEvent actionEvent) {
         u.setFilePath(filenameTextbox.getText());
+        System.out.println(filenameTextbox.getText());
         u.saveTodoLists();
     }
     @Override
