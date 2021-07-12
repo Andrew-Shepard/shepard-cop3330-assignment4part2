@@ -225,6 +225,21 @@ class UserTest {
         //check if it loaded the expected amount of items
         assertEquals(5,test.size());
     }
+    @Test
+    void cleartodolist_gets_rid_of_all_elements() {
+        //create user object
+        User u = new User();
+        //create a sample list for user
+        u.addItem("a", Boolean.FALSE, LocalDate.now());
+        u.addItem("a", Boolean.FALSE, LocalDate.now());
+        u.addItem("a", Boolean.TRUE, LocalDate.now());
+        u.addItem("a", Boolean.TRUE, LocalDate.now());
+        u.addItem("a", Boolean.TRUE, LocalDate.now());
+        //clear the list
+        u.clearTodoList();
+        //assert that the lists length is 0
+        assertEquals(0,u.getTodolist().size());
+    }
 
 
 }
