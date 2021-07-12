@@ -100,7 +100,6 @@ class UserTest {
         User u = new User();
         int expected = 2;
         //add 3 items to the list
-        Item i = new Item("", Boolean.FALSE, LocalDate.now());
         u.addItem("", Boolean.FALSE, LocalDate.now());
         u.addItem("", Boolean.FALSE, LocalDate.now());
         u.addItem("", Boolean.FALSE, LocalDate.now());
@@ -148,11 +147,21 @@ class UserTest {
     }
 
     @Test
-    void getCompleteItems() {
+    void getCompleteItems_returns_only_complete_items() {
+        //create user object
+        User u = new User();
+        //create a sample list for user
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.FALSE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        u.addItem("", Boolean.TRUE, LocalDate.now());
+        //check that the length of the return list matches the expected amount of true items
+        assertEquals(3,u.getCompleteItems().size());
     }
 
     @Test
-    void getIncompleteItems() {
+    void getIncompleteItems_returns_only_incomplete_items() {
     }
 
 
