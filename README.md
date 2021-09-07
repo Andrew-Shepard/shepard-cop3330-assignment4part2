@@ -1,5 +1,3 @@
-# shepard-cop3330-assignment4part2
-
 ### A user shall be able to add a new item to the list
 ![](https://i.imgur.com/4o8lLqd.gif)
 
